@@ -16,7 +16,7 @@ const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
-let circleTurn
+let circleTurn //not assigining this makes it false by default. This is what is being used to change turns in setBoardHoverClass() line 35.
 
 startGame()
 
@@ -39,29 +39,29 @@ function startGame() {
 
 function handleClick(e) {
     const cell = e.target
-    const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
-    placeMark(cell, currentClass)
-    if (checkWin(currentClass)) {
-      endGame(false)
-    } else if (isDraw()) {
-      endGame(true)
+    const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS //circleTurn does what?
+    placeMark(cell, currentClass) //what is placeMark?
+    if (checkWin(currentClass)) { // using lines 87-90
+      endGame(false) // using lines 54-61. function to print result of game
+    } else if (isDraw()) { //checking isDraw() line 63-67
+      endGame(true)  // using lines 54-61. function to print result of game
     } else {
-      swapTurns()
-      setBoardHoverClass()
+      swapTurns() //line 73-75..makes circleTurn = true.
+      setBoardHoverClass() //line 77-85
     }
   }
   
-  function endGame(draw) {
+  function endGame(draw) { // function to pop up the message of results.
     if (draw) {
       winningMessageTextElement.innerText = 'Draw!'
     } else {
       winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`
     }
-    winningMessageElement.classList.add('show')
+    winningMessageElement.classList.add('show') //This i dont understand
   }
   
   function isDraw() {
-    return [...cellElements].every(cell => {
+    return [...cellElements].every(cell => { //the spread of cellElements
       return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS)
     })
   }
