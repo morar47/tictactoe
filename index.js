@@ -36,6 +36,32 @@ function startGame() {
   winningMessageElement.classList.remove('show')
 }
 
+// numbers to use for arrowkeys :
+
+// something = function(e) {
+    // switch(e.which) {
+    //   case 37:
+    //     break;
+    //   case 38:
+    //     break;
+    //   case 39:
+    //     break;
+    //   case 40:
+    //     break;
+
+    //     default return;
+    // }
+    // e.preventDefault();
+//}
+
+// 37 - left
+
+// 38 - up
+
+// 39 - right
+
+// 40 - down
+
 
 function handleClick(e) {
     const cell = e.target
