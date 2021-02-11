@@ -38,35 +38,36 @@ function startGame() {
 
 // numbers to use for arrowkeys :
 
-// something = function(e) {
-    // switch(e.which) {
-    //   case 37:
-    //     break;
-    //   case 38:
-    //     break;
-    //   case 39:
-    //     break;
-    //   case 40:
-    //     break;
+document.onkeydown = function(e) {
+    switch (e.keyCode) {
+        case 37:
+            alert('left');
+            break;
+        case 38:
+            alert('up');
+            break;
+        case 39:
+            alert('right');
+            break;
+        case 40:
+            alert('down');
+            break;
+        case "O":
+            alert('O');
+            break;
+        case "X":
+            alert('X');
+            break;
+    }
+};
 
-    //     default return;
-    // }
-    // e.preventDefault();
-//}
-
-// 37 - left
-
-// 38 - up
-
-// 39 - right
-
-// 40 - down
+//I understand switch statements. I need help understanding line 41.
 
 
 function handleClick(e) {
     const cell = e.target
-    const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS //circleTurn does what?
-    placeMark(cell, currentClass) //what is placeMark?
+    const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS 
+    placeMark(cell, currentClass) 
     if (checkWin(currentClass)) { // using lines 87-90
       endGame(false) // using lines 54-61. function to print result of game
     } else if (isDraw()) { //checking isDraw() line 63-67
