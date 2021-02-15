@@ -27,41 +27,42 @@ restartButton.addEventListener('click', startGame)
 function startGame() {
   circleTurn = false 
   cellElements.forEach(cell => { // we are getting EACH data-cell from the HTML 
-    cell.classList.remove(X_CLASS) // We are removing X_Class when its O's turn
-    cell.classList.remove(CIRCLE_CLASS) // We are removing O_Class when its X's turn
+    cell.className.remove(X_CLASS) // We are removing X_Class when its O's turn
+    cell.className.remove(CIRCLE_CLASS) // We are removing O_Class when its X's turn
     cell.removeEventListener('click', handleClick) // We are removing the EventListner (Event listener, listens for a users event like a click or somehting)
     cell.addEventListener('click', handleClick, { once: true }) // We are adding an event lister 
   })
   setBoardHoverClass()
-  winningMessageElement.classList.remove('show')
+  winningMessageElement.className.remove('show')
 }
 
 // numbers to use for arrowkeys :
 
 document.onkeydown = function(e) {
-    switch (e.keyCode) {
-        case 37:
-            alert('left');
-            break;
-        case 38:
-            alert('up');
-            break;
-        case 39:
-            alert('right');
-            break;
-        case 40:
-            alert('down');
-            break;
-        case "O":
-            alert('O');
-            break;
-        case "X":
-            alert('X');
-            break;
-    }
+  switch (e.key) {
+    case 37:
+        alert('left');
+        break;
+    case 38:
+        alert('up');
+        break;
+    case 39:
+        alert('right');
+        break;
+    case 40:
+        alert('down');
+        break;
+    case "O":
+        alert('O');
+        break;
+    case "X":
+        alert('X');
+        break;
+}
 };
 
-//I understand switch statements. I need help understanding line 41.
+
+
 
 
 function handleClick(e) {
@@ -84,17 +85,17 @@ function handleClick(e) {
     } else {
       winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`
     }
-    winningMessageElement.classList.add('show') //This i dont understand
+    winningMessageElement.className.add('show') //This i dont understand
   }
   
   function isDraw() {
     return [...cellElements].every(cell => { //the spread of cellElements
-      return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS)
+      return cell.className.contains(X_CLASS) || cell.className.contains(CIRCLE_CLASS)
     })
   }
   
   function placeMark(cell, currentClass) {
-    cell.classList.add(currentClass)
+    cell.className.add(currentClass)
   }
   
   function swapTurns() {
@@ -102,19 +103,20 @@ function handleClick(e) {
   }
   
   function setBoardHoverClass() {
-    board.classList.remove(X_CLASS)
-    board.classList.remove(CIRCLE_CLASS)
+    board.className.remove(X_CLASS)
+    board.className.remove(CIRCLE_CLASS)
     if (circleTurn) {
-      board.classList.add(CIRCLE_CLASS)
+      board.className.add(CIRCLE_CLASS)
     } else {
-      board.classList.add(X_CLASS)
+      board.className.add(X_CLASS)
     }
   }
   
   function checkWin(currentClass) {
     return WINNING_COMBINATIONS.some(combination => {
       return combination.every(index => {
-        return cellElements[index].classList.contains(currentClass)
+        return cellElements[index].className.contains(currentClass)
       })
     })
   }
+
